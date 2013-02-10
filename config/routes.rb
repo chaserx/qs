@@ -1,5 +1,5 @@
 Qs::Application.routes.draw do
-  root to: info#index
+  root :to => "info#index"
 
   get "info/index"
 
