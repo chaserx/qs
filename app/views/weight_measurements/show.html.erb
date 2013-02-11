@@ -1,0 +1,15 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Value:</b>
+  <%= @weight_measurement.value %>
+</p>
+
+<p>
+  <b>Unit:</b>
+  <%= @weight_measurement.unit %>
+</p>
+
+
+<%= link_to 'Edit', edit_weight_measurement_path(@weight_measurement) %> |
+<%= link_to 'Back', weight_measurements_path %>
