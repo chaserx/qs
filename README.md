@@ -1,11 +1,12 @@
 # QS
 
 Chase Southard
+
 Feb 9 2013
 
-A _Work in Progress_ Quantified Self project
+A **_Work in Progress_** Quantified Self project
 
-Looking to track:
+Measure:
 
 - weight
 - exercise
@@ -13,3 +14,9 @@ Looking to track:
 - sleep
 - mood
 
+Want:
+
+- simplified entry
+- mobile view
+- dashboard
+- data visualization
