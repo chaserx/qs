@@ -2,7 +2,7 @@ class WeightMeasurementsController < ApplicationController
   # GET /weight_measurements
   # GET /weight_measurements.json
   def index
-    @weight_measurements = WeightMeasurement.all
+    @weight_measurements = WeightMeasurement.order('created_at DESC').limit(12)
     @weight_measurement = WeightMeasurement.new
 
     @total = WeightMeasurement.count

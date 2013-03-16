@@ -13,7 +13,7 @@
           <th>created at</th>
         </tr>
       </thead>
-      <%= render(@weight_measurements.reverse) %>
+      <%= render(@weight_measurements) %>
     </table>
   </div>
 
@@ -26,7 +26,7 @@
     <table class="table table-bordered">
       <tr>
         <td><strong>CURRENT</strong></td>
-        <td><strong><%= @weight_measurements.last.value %></strong></td>
+        <td><strong><%= WeightMeasurement.last.value %></strong></td>
       </tr>
       <tr>
         <td><strong>Max</strong></td>
