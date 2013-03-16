@@ -6,7 +6,7 @@
 class WeightMeasurement < ActiveRecord::Base
   attr_accessible :unit, :value
 
-  before_save :convert_to_kg
+  before_save :convert_to_kg, if: :unit == 'lbs'
 
   def kg_to_lbs
     value * 2.20462

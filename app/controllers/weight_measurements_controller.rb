@@ -2,12 +2,12 @@ class WeightMeasurementsController < ApplicationController
   # GET /weight_measurements
   # GET /weight_measurements.json
   def index
-    @weight_measurements = WeightMeasurement.all.reverse
+    @weight_measurements = WeightMeasurement.all
     @weight_measurement = WeightMeasurement.new
 
     @total = WeightMeasurement.count
     @avg = WeightMeasurement.average(:value)
-    values = WeightMeasurement.all.map(&:value)
+    values = WeightMeasurement.select('value').all.map(&:value)
     @med = median(values)
     @min = values.min
     @max = values.max
