@@ -1,6 +1,6 @@
 Qs::Application.routes.draw do
+  
   resources :weight_measurements
-
 
   root :to => "info#index"
 
