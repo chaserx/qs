@@ -1,10 +1,58 @@
-<h1>Weight Measurements</h1>
+<div class="row">
+  <div class="span12">
+    <h1>Weight Measurements</h1>
+  </div>
+</div>
 
-<p><%= link_to 'New Weight measurement', new_weight_measurement_path, id: 'new_link', remote: true %></p>
+<div class="row">
+  <div class="span5">
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>measurement (unit)</th>
+          <th>created at</th>
+        </tr>
+      </thead>
+      <%= render(@weight_measurements) %>
+    </table>
+  </div>
 
-<ul id="newest_measurements">
-  <%= render(@weight_measurements) %>
-</ul>
-
-
-<div id="g"></div>
+  <div class="span7"> 
+    <%= simple_form_for @weight_measurement do |f| %>
+      <%= f.input :value %>
+      <%= f.input :unit, disabled: true %>
+      <%= f.button :submit, "Add Measurement" %>
+    <% end %>
+    <table class="table table-bordered">
+      <tr>
+        <td><strong>Max</strong></td>
+        <td><%= @max %></td>
+      </tr>
+      <tr>
+        <td><strong>UQ</strong></td>
+        <td><%= @uq %></td>
+      </tr>
+      <tr>
+        <td><strong>Mean</strong></td>
+        <td><%= @avg %></td>
+      </tr>
+      <tr>
+        <td><strong>Median</strong></td>
+        <td><%= @med %></td>
+      </tr>
+      <tr>
+        <td><strong>LQ</strong></td>
+        <td><%= @lq %></td>
+      </tr>
+      <tr>
+        <td><strong>Min</strong></td>
+        <td><%= @min %></td>
+      </tr>
+      <tr>
+        <td><strong>N</strong></td>
+        <td><%= @total %></td>
+      </tr>
+      
+    </table>
+  </div>
+</div>

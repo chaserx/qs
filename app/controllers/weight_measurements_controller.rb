@@ -3,6 +3,16 @@ class WeightMeasurementsController < ApplicationController
   # GET /weight_measurements.json
   def index
     @weight_measurements = WeightMeasurement.all.reverse
+    @weight_measurement = WeightMeasurement.new
+
+    @total = WeightMeasurement.count
+    @avg = WeightMeasurement.average(:value)
+    values = WeightMeasurement.all.map(&:value)
+    @med = median(values)
+    @min = values.min
+    @max = values.max
+    @uq  = excel_upper_quartile(values)
+    @lq  = excel_lower_quartile(values)
 
     respond_to do |format|
       format.html # index.html.erb
@@ -81,6 +91,42 @@ class WeightMeasurementsController < ApplicationController
       format.html { redirect_to weight_measurements_url }
       format.json { head :no_content }
     end
+  end
+
+  private
+
+  # from http://stackoverflow.com/a/14859546/281699
+  def median(array)
+    sorted = array.sort
+    len = sorted.length
+    return (sorted[(len - 1) / 2] + sorted[len / 2]) / 2.0
+  end
+
+  # from http://stackoverflow.com/a/1744950/281699
+  def excel_quartile(extreme,array)      
+    return nil if array.empty?
+    sorted_array = array.sort
+    u = case extreme
+    when :upper then 3 * sorted_array.length + 1
+    when :lower then sorted_array.length + 3
+    else raise "ArgumentError"
+    end
+    u *= 0.25
+    if (u-u.truncate).is_a?(Integer)
+      return sorted_array[(u-u.truncate)-1]
+    else
+      sample = sorted_array[u.truncate.abs-1]
+      sample1 = sorted_array[(u.truncate.abs)]
+      return sample+((sample1-sample)*(u-u.truncate))
+    end
+  end
+
+  def excel_upper_quartile(array)
+    excel_quartile(:upper, array)
+  end
+
+  def excel_lower_quartile(array)
+    excel_quartile(:lower, array)
   end
 
 end
