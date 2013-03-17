@@ -23,7 +23,7 @@ end
 
 gem 'jquery-rails'
 
-gem 'simple_form'
+gem 'simple_form', '~> 2.1.0'
 
 group :development do
   gem 'puma'

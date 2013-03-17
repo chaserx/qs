@@ -5,6 +5,7 @@ class WeightMeasurementsController < ApplicationController
     @weight_measurements = WeightMeasurement.order('created_at DESC').limit(12)
     @weight_measurement = WeightMeasurement.new
 
+    @latest = WeightMeasurement.last
     @total = WeightMeasurement.count
     @avg = WeightMeasurement.average(:value)
     values = WeightMeasurement.select('value').all.map(&:value)

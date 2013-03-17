@@ -6,7 +6,11 @@
 class WeightMeasurement < ActiveRecord::Base
   attr_accessible :unit, :value
 
-  before_save :convert_to_kg, if: :unit == 'lbs'
+  # TODO(chase): set the unit to either lbs or kg based on prefs.
+
+  before_save :convert_to_kg
+
+  validates :value, presence: true, numericality: {greater_than: 0}
 
   def kg_to_lbs
     value * 2.20462

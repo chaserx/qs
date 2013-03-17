@@ -18,15 +18,19 @@
   </div>
 
   <div class="span7"> 
-    <%= simple_form_for @weight_measurement do |f| %>
-      <%= f.input :value %>
-      <%= f.input :unit, disabled: true %>
-      <%= f.button :submit, "Add Measurement" %>
+    <%= simple_form_for @weight_measurement, :html => {:class => 'form-horizontal', :id => 'weightInput' } do |f| %>
+      <%= f.input :value, :wrapper => :prepend, :label => false do %>
+        <%= content_tag :span, @weight_measurement.unit, :class => "add-on" %>
+        <%= f.input_field :value %>
+        <%= f.button :submit, "Add Measurement", class: 'btn' %>
+      <% end %>
+
+      
     <% end %>
     <table class="table table-bordered">
       <tr>
         <td><strong>CURRENT</strong></td>
-        <td><strong><%= WeightMeasurement.last.value %></strong></td>
+        <td><strong><%= @latest.value %> <%= @latest.unit %></strong></td>
       </tr>
       <tr>
         <td><strong>Max</strong></td>
@@ -56,7 +60,9 @@
         <td><strong>N</strong></td>
         <td><%= @total %></td>
       </tr>
-      
     </table>
+    <div id="chart">
+      
+    </div>
   </div>
 </div>

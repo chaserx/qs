@@ -10,7 +10,7 @@ d3.json( url, function( error, data ) {
   var dataset = data
   
   //Create SVG element
-  var svg = d3.select("body")
+  var svg = d3.select("#chart")
         .append("svg")
         .attr("width", w)
         .attr("height", h);
